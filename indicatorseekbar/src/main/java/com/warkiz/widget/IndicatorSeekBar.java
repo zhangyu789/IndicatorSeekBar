@@ -360,8 +360,10 @@ public class IndicatorSeekBar extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int height = Math.round(mCustomDrawableMaxHeight + getPaddingTop() + getPaddingBottom());
         setMeasuredDimension(resolveSize(SizeUtils.dp2px(mContext, 170), widthMeasureSpec), height + mTickTextsHeight);
-        initSeekBarInfo();
-        refreshSeekBarLocation();
+        if (!mIsTouching){
+            initSeekBarInfo();
+            refreshSeekBarLocation();
+        }
     }
 
     private void initSeekBarInfo() {
