@@ -1216,12 +1216,14 @@ public class IndicatorSeekBar extends View {
                     if (mSeekChangeListener != null) {
                         mSeekChangeListener.onStartTrackingTouch(this);
                     }
-                    refreshSeekBar(event);
+                    // refreshSeekBar(event);
+                     refreshSeekBarDelayed(event); // 延迟刷新滑块位置
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                refreshSeekBar(event);
+                // refreshSeekBar(event);
+                 refreshSeekBarDelayed(event); // 延迟刷新滑块位置
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
@@ -1239,7 +1241,15 @@ public class IndicatorSeekBar extends View {
         }
         return super.onTouchEvent(event);
     }
-
+    // 延迟刷新滑块位置的方法
+    private void refreshSeekBarDelayed(final MotionEvent event) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                refreshSeekBar(event);
+            }
+        });
+    }
     private void refreshSeekBar(MotionEvent event) {
         refreshThumbCenterXByProgress(calculateProgress(calculateTouchX(adjustTouchX(event))));
         setSeekListener(true);
