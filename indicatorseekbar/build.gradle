@@ -5,7 +5,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.shangmengmeng'
+                groupId = 'com.github.zhangyu789'
                 artifactId = 'indicatorseekbar'
                 version = '2.1.2.1'
             }
